@@ -2,10 +2,12 @@
 Pulsifi Platform API Integration Guideline
 
 ### Prerequisite 
-1.You should have in-depth knowledge about 0Auth2.0 Authorization Flow
+1. You should have in-depth knowledge about 0Auth2.0 Authorization Flow
+
 2. If you wish to be Pulsifi Platform Partner, contact Pulsifi Integration Team for information as below
     - **Client Credential**
         - Please provide a **Callback Url** for whitelist purpose,  you will need this under Authentication section
+
 3. If you wish to managing data via API on behalf of Pulsifi client, contact Pulsifi Integration Team for information as below
     - **API User Credential** : we recommend username start with api_xxx@domain, for example api_user@pulsifi.me together with the actual password
     - **Company Id** : Must be a valid company id that accessible by Api User
@@ -20,8 +22,8 @@ Pulsifi Platform API Integration Guideline
 #### **(TBA)** Create Job 
 1. create job opening with job title 
 #### **(TBA)** Generate Invite Link 
-1. create invitation link to take assessment 
+2. create invitation link to take assessment 
 
 ###  Webhook Callback 
 
--1. **(TBA)** Send Assessment Score, Profile Link when Candidate Completed Assessment 
+1. **(TBA)** Send Assessment Score, Profile Link when Candidate Completed Assessment 
