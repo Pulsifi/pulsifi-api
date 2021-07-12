@@ -1,10 +1,8 @@
-# pulsifi-api
-
-(WIP) Pulsifi Platform API Integration Guideline
+# Pulsifi Platform API Integration Guideline
 
 ### Prerequisite
 
-1. Obtain **api-key, client-id** and necessary **Pulsifi job ids** from Pulsifi integration team
+1. Obtain **api-key, client-id** and necessary **Pulsifi job ID** from Pulsifi integration team
 2. Provide your **Webhook callback url** that accept HTTP POST method.
    - **client-id** value will be included in the header of "client-id". Please compare this with the client-id value issued in step.1
      <br />
@@ -209,7 +207,7 @@
 
 ### ATS PLATFORM WEBHOOK INTEGRATION
 
-1. Push Pulsifi's Fit Score, Pulsifi's Culture Score, Pulsifi's Profile Public Share Link when candidate completes Pulsifi's assessment
+1. Push Pulsifi's fit score, culture score, and public profile share link when candidate completes Pulsifi's assessment
 
 #### URL (HTTP POST)
 
@@ -252,7 +250,7 @@
   <td>profile_link</td>
   <td>String</td>
   <td>
-  Pulsifi's Public profile share link.<br />
+  Pulsifi's public profile share link.<br />
   Example: https://app.pulsifi.me/share/candidate/...
   </td>
   </tr>
