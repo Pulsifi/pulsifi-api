@@ -1,13 +1,15 @@
 # Pulsifi Platform API Integration Guideline
 
-### Prerequisite
+## Prerequisite
+<br />
 
 1. Obtain **api-key, client-id** and the necessary **Pulsifi job ID** from Pulsifi integration team
-2. Provide your **Webhook callback url** that accept HTTP POST method.
+2. ATS platform to provide a **webhook callback url** that accept HTTP POST method.
    - **client-id** value will be included in the header of "client-id". Please compare this with the client-id value issued in step.1
      <br />
 
-### Authentication
+## Authentication
+<br />
 
 1. Pulsifi integration API calls will be authenticated using ***basic authentication*** (base64 format). Pulsifi will provide an api key to be used with the ATS platform.
 
@@ -25,7 +27,7 @@ curl --request POST \
 ```
    <br />
 
-### API Method
+## API Method
 <br />
 
 #### Generate Invite Link
@@ -219,9 +221,52 @@ curl --request POST \
   </table>
 <br /><br />
 
-### ATS PLATFORM WEBHOOK INTEGRATION
+#### Sample Invitation Post Request (anonymous)
 
-1. Push Pulsifi's fit score, culture score, and public profile share link when candidate completes Pulsifi's assessment
+<br />
+
+```
+curl -X 'POST' \
+'http://api.pulsifi.me/integration/v1.0/invitation/ats' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic YWRtaW46YWFhYQ==' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "job_id": "<pulsifi job id>",
+  "ext_reference_id": "<ATS reference id>",
+  "is_anonymous_candidate": true,
+  "deadline": "2021-08-12T12:21:59Z"
+}'
+
+```
+<br />
+
+#### Sample Invitation Post Request (non-anonymous)
+<br />
+
+```
+curl -X 'POST' \  'http://api.pulsifi.me/integration/v1.0/invitation/ats' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic YWRtaW46YWFhYQ==' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "job_id": "<pulsifi job id>",
+  "ext_reference_id": "<ATS reference id>",
+  "is_anonymous_candidate": false,
+  "email": "tester@test.com",
+  "first_name": "Tester",
+  "last_name": "User", 
+  "deadline": "2021-08-12T12:21:59Z"
+}'
+```
+
+<br />
+
+## ATS PLATFORM WEBHOOK INTEGRATION
+<br />
+
+1. Push Pulsifi's fit score, culture score, and public profile share link when candidate completes Pulsifi's assessment.
+<br /><br />
 
 #### URL (HTTP POST)
 
