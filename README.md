@@ -2,17 +2,31 @@
 
 ### Prerequisite
 
-1. Obtain **api-key, client-id** and necessary **Pulsifi job ID** from Pulsifi integration team
+1. Obtain **api-key, client-id** and the necessary **Pulsifi job ID** from Pulsifi integration team
 2. Provide your **Webhook callback url** that accept HTTP POST method.
    - **client-id** value will be included in the header of "client-id". Please compare this with the client-id value issued in step.1
      <br />
 
 ### Authentication
 
-1. In order to use Pulsifi integration api, please add the "api-key" header to every http api call.
-   <br /><br />
+1. Pulsifi integration API calls will be authenticated using ***basic authentication*** (base64 format). Pulsifi will provide an api key to be used with the ATS platform.
+
+```
+username: <pulsifi_api_key>
+password: <blank, no password required>
+```
+
+2. The following is an example of a Post request:
+```
+curl --request POST \
+  --url 'http://api.pulsifi.me/integration/v1.0/invitation/ats' \
+  --header 'Authorization: Basic YOURENCODEDAPIKEY'
+  ...
+```
+   <br />
 
 ### API Method
+<br />
 
 #### Generate Invite Link
 
