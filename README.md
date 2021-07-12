@@ -273,7 +273,7 @@
 
   <tr>
   <td>culture_score</td>
-  <td>Number)</td>
+  <td>Number</td>
   <td>
   Pulsifi's Culture Score.
   </td>
