@@ -30,7 +30,7 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
 
    <br />
 
-## PULSIFI's API ENDPOINTS INTEGRATION
+## PULSIFI'S API ENDPOINTS INTEGRATION
 <br />
 
 ### Generate Pulsifi Invitation Link Endpoint
