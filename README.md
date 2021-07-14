@@ -1,6 +1,7 @@
 # Pulsifi Platform API Integration Guideline
 
 ## Prerequisite
+
 <br />
 
 1. Obtain **api-key, client-id** and the necessary **Pulsifi job ID** from Pulsifi integration team
@@ -9,9 +10,10 @@
      <br />
 
 ## Authentication
+
 <br />
 
-1. Pulsifi integration API calls will be authenticated using ***basic authentication*** (base64 format). Pulsifi will provide an api key to be used with the ATS platform.
+1. Pulsifi integration API calls will be authenticated using **_basic authentication_** (base64 format). Pulsifi will provide an api key to be used with the ATS platform.
 
 ```
 username: <pulsifi_api_key>
@@ -19,15 +21,18 @@ password: <blank, no password required>
 ```
 
 2. The following is an example of a Post request:
+
 ```
 curl --request POST \
-  --url 'http://api.pulsifi.me/integration/v1.0/invitation/ats' \
+  --url 'https://api.pulsifi.me/public/invitations/ats' \
   --header 'Authorization: Basic YOURENCODEDAPIKEY'
   ...
 ```
+
    <br />
 
 ## API Method
+
 <br />
 
 #### Generate Invite Link
@@ -36,7 +41,7 @@ curl --request POST \
 
 #### URL (HTTP POST)
 
-- http://api.pulsifi.me/integration/v1.0/invitation/ats
+- https://api.pulsifi.me/public/invitations/ats
 
 #### Payload
 
@@ -227,7 +232,7 @@ curl --request POST \
 
 ```
 curl -X 'POST' \
-'http://api.pulsifi.me/integration/v1.0/invitation/ats' \
+'https://api.pulsifi.me/public/invitations/ats' \
   -H 'accept: application/json' \
   -H 'Authorization: Basic YWRtaW46YWFhYQ==' \
   -H 'Content-Type: application/json' \
@@ -239,13 +244,16 @@ curl -X 'POST' \
 }'
 
 ```
+
 <br />
 
 #### Sample Invitation Post Request (non-anonymous)
+
 <br />
 
 ```
-curl -X 'POST' \  'http://api.pulsifi.me/integration/v1.0/invitation/ats' \
+curl -X 'POST' \
+'https://api.pulsifi.me/public/invitations/ats' \
   -H 'accept: application/json' \
   -H 'Authorization: Basic YWRtaW46YWFhYQ==' \
   -H 'Content-Type: application/json' \
@@ -255,7 +263,7 @@ curl -X 'POST' \  'http://api.pulsifi.me/integration/v1.0/invitation/ats' \
   "is_anonymous_candidate": false,
   "email": "tester@test.com",
   "first_name": "Tester",
-  "last_name": "User", 
+  "last_name": "User",
   "deadline": "2021-08-12T12:21:59Z"
 }'
 ```
@@ -263,10 +271,11 @@ curl -X 'POST' \  'http://api.pulsifi.me/integration/v1.0/invitation/ats' \
 <br />
 
 ## ATS PLATFORM WEBHOOK INTEGRATION
+
 <br />
 
 1. Push Pulsifi's fit score, culture score, and public profile share link when candidate completes Pulsifi's assessment.
-<br /><br />
+   <br /><br />
 
 #### URL (HTTP POST)
 
