@@ -1,26 +1,20 @@
 # Pulsifi Platform API Integration Guideline
 
-## Prerequisite
-
+## INTEGRATION REQUESTS AND TOKENS
 <br />
 
-1. Obtain **api-key, client-id** and the necessary **Pulsifi job ID** from Pulsifi integration team
-2. ATS platform to provide a **webhook callback url** that accept HTTP POST method.
-   - **client-id** value will be included in the header of "client-id". Please compare this with the client-id value issued in step.1
-     <br />
+Pulsifi's Integration Team will provide th necessary **API key, client ID** and the necessary **Pulsifi job ID**.
 
-## Authentication
+Pulsifi integration API calls will be authenticated using **basic authentication (base64 format)**.
 
-<br />
-
-1. Pulsifi integration API calls will be authenticated using **_basic authentication_** (base64 format). Pulsifi will provide an api key to be used with the ATS platform.
+The following is a sample of Basic Authentication:
 
 ```
 username: <pulsifi_api_key>
 password: <blank, no password required>
 ```
 
-2. The following is an example of a Post request:
+The following is a sample of a Post request to Pulsifi’s platform API endpoints:
 
 ```
 curl --request POST \
@@ -29,21 +23,26 @@ curl --request POST \
   ...
 ```
 
-   <br />
+The ATS platform will need to provide a **webhook callback url** that accepts **HTTP post** method, if data is required to be transferred back from Pulsifi's platform. The **client ID** value will be included in the header of "client-id", which will be used to determine Pulsifi as the source.
 
-## API Method
-
+For security purposes, the ATS platform will be required to **whitelist Pulsifi’s platform IP** if data transfer back to the ATS platform is required.
 <br />
 
-#### Generate Invite Link
+   <br />
 
-1. Create Pulsifi's invitation link to take assessment
+## PULSIFI's API ENDPOINTS INTEGRATION
+<br />
 
-#### URL (HTTP POST)
+### Generate Pulsifi Invitation Link Endpoint
+
+- This endpoint will be used to generate a Pulsifi's invitation link to take assessment.
+<br /><br />
+
+### URL (HTTP POST)
 
 - https://api.pulsifi.me/public/invitations/ats
 
-#### Payload
+### Payload
 
 - Format: application/json
 
@@ -150,7 +149,7 @@ curl --request POST \
 
   </table><br /><br />
 
-#### Response
+### Response
 
 <br />
   <table border=1>
@@ -226,7 +225,7 @@ curl --request POST \
   </table>
 <br /><br />
 
-#### Sample Invitation Post Request (anonymous)
+### Sample Invitation Post Request (anonymous)
 
 <br />
 
@@ -247,7 +246,7 @@ curl -X 'POST' \
 
 <br />
 
-#### Sample Invitation Post Request (non-anonymous)
+### Sample Invitation Post Request (non-anonymous)
 
 <br />
 
@@ -274,14 +273,14 @@ curl -X 'POST' \
 
 <br />
 
-1. Push Pulsifi's fit score, culture score, and public profile share link when candidate completes Pulsifi's assessment.
-   <br /><br />
+The ATS platform will be required to provide a **webhook callback url** if it requires Pulsifi’s platform to push Pulsifi's fit score, culture score, and public profile share link when candidate completes Pulsifi's assessment.
+<br /><br />
 
-#### URL (HTTP POST)
+### URL (HTTP POST)
 
 - Webhook URL to be provided by the ATS platform
 
-#### Payload
+### Payload
 
 - Format: application/json
 
@@ -349,7 +348,7 @@ curl -X 'POST' \
 
   </table><br />
 
-#### Sample Pulsifi Fit Score Payload
+### Sample Pulsifi Fit Score Payload
 
 <br />
 
@@ -368,7 +367,7 @@ curl -X 'POST' \
 
 <br />
 
-#### Sample Pulsifi Culture Score Payload
+### Sample Pulsifi Culture Score Payload
 
 <br />
 
