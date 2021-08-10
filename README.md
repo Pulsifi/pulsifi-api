@@ -276,9 +276,11 @@ curl -X 'POST' \
 The ATS platform will be required to provide a **webhook callback url** if it requires Pulsifi’s platform to return Pulsifi's fit score, culture score, and public profile share link when candidate completes Pulsifi's assessment.
 <br /><br />
 
-### URL (HTTP POST)
+### URL (HTTPS POST)
 
 - Webhook URL to be provided by the ATS platform
+- Sample Response: 200 OK
+
 
 ### Payload
 
