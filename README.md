@@ -334,31 +334,23 @@ The ATS platform will be required to provide a **webhook callback url** if it re
   <td>fit_score</td>
   <td>Number</td>
   <td>
-  Pulsifi's Fit Score.
-  </td>
-  </tr>
-
-  <tr>
-  <td>culture_score</td>
-  <td>Number</td>
-  <td>
-  Pulsifi's Culture Score.
+  Pulsifi's Fit Score (Role Fit Score/ Culture Fit Score).
   </td>
   </tr>
 
   </table><br />
 
-### Sample Pulsifi Fit Score Payload
+### Sample Pulsifi Role Fit Score Payload
 
 <br />
 
 ```
 {
-  "event_type": "application_fit_score_created",
+  "event_type": "job_application_role_fit_score_created",
   "event_body": {
     "job_id": "<pulsifi job id>",
     "ext_reference_id": "<ATS job application reference id>",
-    "profile_link": "https://app.pulsifi.me/share/candidate/...",
+    "profile_share_url": "https://app.pulsifi.me/share/candidate/...",
     "job_application_id": "<pulsifi job application id reference>",
     "fit_score": 9.4
   }
@@ -367,19 +359,19 @@ The ATS platform will be required to provide a **webhook callback url** if it re
 
 <br />
 
-### Sample Pulsifi Culture Score Payload
+### Sample Pulsifi Culture Fit Score Payload
 
 <br />
 
 ```
 {
-  "event_type": "application_culture_score_created",
+  "event_type": "job_application_culture_fit_score_created",
   "event_body": {
     "job_id": "<pulsifi job id>",
     "ext_reference_id": "<ATS job application reference id>",
-    "profile_link": "https://app.pulsifi.me/share/candidate/...",
+    "profile_share_url": "https://app.pulsifi.me/share/candidate/...",
     "job_application_id": "<pulsifi job application id reference>",
-    "culture_score": 9.4
+    "fit_score": 9.4
   }
 }
 ```
