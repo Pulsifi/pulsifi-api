@@ -293,11 +293,11 @@ The ATS platform will be required to provide a **webhook callback url** if it re
   <th>Description</th>
   </tr>
 
-  <tr>
+  <tr valign=top>
   <td>event_type</td>
   <td>String</td>
   <td>Pulsifi's event type<br />
-  Example: application_fit_score_created / application_culture_score_created
+  Example: job_application_role_fit_score_created / job_application_culture_fit_score_created
   </td>
   </tr>
   
@@ -314,7 +314,7 @@ The ATS platform will be required to provide a **webhook callback url** if it re
   </tr>
 
   <tr>
-  <td>profile_link</td>
+  <td>profile_share_url</td>
   <td>String</td>
   <td>
   Pulsifi's public profile share link.<br />
