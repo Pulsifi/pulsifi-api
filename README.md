@@ -70,8 +70,8 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
   <td>
   Options:
   <ul>
-  <li>true: Anonymous for non-PII mode</li>
-  <li>false: Non anonymous for PII mode</li>
+  <li>true: Anonymous mode</li>
+  <li>false: Non-anonymous mode</li>
   </ul>
   </td>
   </tr>
@@ -93,8 +93,8 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
   <td>email</td>
   <td>String</td>
   <td>
-  Y (PII mode)<br />
-  N (non-PII mode)
+  Y (non-anonymous mode)<br />
+  N (anonymous mode)
   </td>
   <td>
   Candidate's email.
@@ -109,8 +109,8 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
   <td>first_name</td>
   <td>String</td>
   <td>
-  Y (PII mode)<br />
-  N (non-PII mode)
+  Y (non-anonymous mode)<br />
+  N (anonymous mode)
   </td>
   <td>
   Candidate's first name.
@@ -125,8 +125,8 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
   <td>last_name</td>
   <td>String</td>
   <td>
-  Y (PII mode)<br />
-  N (non-PII mode)
+  Y (non-anonymous mode)<br />
+  N (anonymous mode)
   </td>
   <td>
   Candidate's last name.
@@ -183,8 +183,8 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
   <td>
   Options:
   <ul>
-  <li>true: Anonymous for non-PII mode</li>
-  <li>false: Non anonymous for PII mode</li>
+  <li>true: Anonymous mode</li>
+  <li>false: Non-anonymous mode</li>
   </ul>
   </td>
   </tr>
