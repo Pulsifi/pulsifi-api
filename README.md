@@ -3,7 +3,7 @@
 ## INTEGRATION REQUESTS AND TOKENS
 <br />
 
-Pulsifi's Integration Team will provide th necessary **API key, client ID** and the necessary **Pulsifi job ID**.
+Pulsifi's Integration Team will provide the necessary **API key, client ID** and the necessary **Pulsifi job ID**.
 
 Pulsifi integration API calls will be authenticated using **basic authentication (base64 format)**.
 
