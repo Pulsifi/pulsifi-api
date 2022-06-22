@@ -1,9 +1,10 @@
 # Pulsifi Platform API Integration Guideline
 
-## INTEGRATION REQUESTS AND TOKENS
+## Authentication (Basic Auth)
+
 <br />
 
-Pulsifi's Integration Team will provide the necessary **API key, client ID** and the necessary **Pulsifi job ID**.
+Pulsifi's Integration Team will provide the necessary **API key/client ID**
 
 Pulsifi integration API calls will be authenticated using **basic authentication (base64 format)**.
 
@@ -19,32 +20,39 @@ The following is a sample of a Post request to Pulsifiâ€™s platform API endpoint
 ```
 curl --request POST \
   --url 'https://api.pulsifi.me/public/invitations/ats' \
-  --header 'Authorization: Basic YOURENCODEDAPIKEY'
+  --header 'Authorization: Basic YOUR-ENCODED-APIKEY'
   ...
 ```
 
-The ATS platform will need to provide a **webhook callback url** that accepts **HTTP post** method, if data is required to be transferred back from Pulsifi's platform. The **client ID** value will be included in the header of "client-id", which will be used to determine Pulsifi as the source.
+## Capture and store assessment result
 
-For security purposes, the ATS platform will be required to **whitelist Pulsifiâ€™s platform IP** if data transfer back to the ATS platform is required.
+if assessment result data need to capture and store in your ATS platform, please provide a **webhook callback url** that accepts **HTTP post** method to Pulsifi
+
+A **client ID** value will be included in the **HTTP post's header** with name of "client-id", which used to determine Pulsifi as the source.
+
+For best security practice, always **whitelist Pulsifiâ€™s platform IP** by requesting IP address from Pulsifi
+
+<br />
 <br />
 
-   <br />
+## Pulsifi Integration API Reference
 
-## PULSIFI'S API ENDPOINTS INTEGRATION
 <br />
 
-### Generate Pulsifi Invitation Link Endpoint
+### 1. Generate Pulsifi Assessment Invitation Endpoint
 
-- This endpoint will be used to generate a Pulsifi's invitation link to take assessment.
-<br /><br />
+-   This endpoint will be used to generate a Pulsifi's assessment invitation link.
+    <br /><br />
 
-### URL (HTTP POST)
+#### URL (HTTP POST)
 
-- https://api.pulsifi.me/public/invitations/ats
+-   https://api.pulsifi.me/public/invitations/ats
 
-### Payload
+#### Content Type
 
-- Format: application/json
+-   Format: application/json
+
+#### Payload
 
 <br />
 
@@ -60,7 +68,7 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
   <td>job_id</td>
   <td>String (uuid)</td>
   <td>Y</td>
-  <td>Job ID provided by Pulsifi.</td>
+  <td>Refer to FAQ section below</td>
   </tr>
 
   <tr valign=top>
@@ -83,7 +91,6 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
   <td>
   ATS platform job application id.
   <ul>
-  <li>minimum 0 characters</li>
   <li>maximum 50 characters</li>
   </ul>
   </td>
@@ -99,7 +106,6 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
   <td>
   Candidate's email.
   <ul>
-  <li>minimum 0 characters</li>
   <li>maximum 255 characters</li>
   </ul>
   </td>
@@ -115,7 +121,6 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
   <td>
   Candidate's first name.
   <ul>
-  <li>minimum 0 characters</li>
   <li>maximum 255 characters</li>
   </ul>
   </td>
@@ -131,7 +136,6 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
   <td>
   Candidate's last name.
   <ul>
-  <li>minimum 0 characters</li>
   <li>maximum 255 characters</li>
   </ul>
   </td>
@@ -143,13 +147,17 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
   <td>N</td>
   <td>
   Pulsifi's invitation link deadline date (UTC date).<br />
-  Example: "2021-08-12T12:21:59Z"
+  <ul>
+  <li>Default to 3 months validity period</li>
+  <li>maximum 3 months validity period</li>
+  <li>Example: "2021-08-12T12:21:59Z"</li>
+  </ul>  
   </td>
   </tr>
 
   </table><br /><br />
 
-### Response
+#### Response
 
 <br />
   <table border=1>
@@ -162,7 +170,152 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
   <tr>
   <td>status</td>
   <td>String</td>
-  <td>SUCCESS (200) / ERROR (4XX / 5XX), status of the request.</td>
+  <td><strong>invited</strong>, initial state</td>
+  </tr>
+
+  <tr>
+  <td>ext_reference_id</td>
+  <td>String</td>
+  <td>ATS platform job application id.</td>
+  </tr>
+
+  <tr>
+  <td>job_id</td>
+  <td>String (uuid)</td>
+  <td>Job ID provided by Pulsifi.</td>
+  </tr>
+
+  <tr valign=top>
+  <td>is_anonymous_candidate</td>
+  <td>Boolean</td>
+  <td>
+  Options:
+  <ul>
+  <li>true: Anonymous mode</li>
+  <li>false: Non-anonymous mode</li>
+  </ul>
+  </td>
+  </tr>
+
+  <tr>
+  <td>invitation_code.</td>
+  <td>String</td>
+  <td>Pulsifi's invitation code. <br/>
+  <strong>Recommend to store this code in your database as reference <br>
+  for further assessment status and result query</strong></td>
+  </tr>
+
+  <tr>
+  <td>invitation_link</td>
+  <td>String</td>
+  <td>
+  Pulsifi's assessment invitation link.<br />
+  Example: https://candidate.pulsifi.me/invites/...
+  </td>
+  </tr>
+
+  <tr>
+  <td>invitation_expired_at</td>
+  <td>UTC Date</td>
+  <td>
+  Pulsifi's assessment invitation link expiry date.<br />
+  Example: 2021-08-04T23:59:59.999Z
+  </td>
+  </tr>
+
+  <tr>
+  <td>created_at</td>
+  <td>UTC Date</td>
+  <td>
+  Pulsifi's assessment invitation link created on this date.<br />
+  Example: 2021-08-04T23:59:59.999Z
+  </td>
+  </tr>
+
+  </table>
+<br /><br />
+
+#### Sample Invitation Post Request (anonymous)
+
+<br />
+
+```
+curl -X 'POST' \
+'https://api.pulsifi.me/public/invitations/ats' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic YWRtaW46YWFhYQ==' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "job_id": "<pulsifi job id>",
+  "ext_reference_id": "<ATS reference id>",
+  "is_anonymous_candidate": true,
+  "deadline": "2021-08-12T12:21:59Z"
+}'
+
+```
+
+<br />
+
+#### Sample Invitation Post Request (non-anonymous)
+
+<br />
+
+```
+curl -X 'POST' \
+'https://api.pulsifi.me/public/invitations/ats' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic YWRtaW46YWFhYQ==' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "job_id": "<pulsifi job id>",
+  "ext_reference_id": "<ATS reference id>",
+  "is_anonymous_candidate": false,
+  "email": "tester@test.com",
+  "first_name": "Tester",
+  "last_name": "User",
+  "deadline": "2021-08-12T12:21:59Z"
+}'
+```
+
+<br />
+
+### 2. Get Assessment Invitation Status
+
+-   This endpoint will be used to get assessment invitation status for progress tracking purpose.
+    <br /><br />
+
+#### URL (HTTP GET)
+
+-   https://api.pulsifi.me/public/invitations/ats/{invitation_code}
+-   Path Param
+    -   **_invitation_code_**, getting from generate assessment invitation response
+
+#### Content Type
+
+-   Format: application/json
+
+#### Response
+
+<br />
+  <table border=1>
+  <tr>
+  <th>Attribute</th>
+  <th>Type</th>
+  <th>Description</th>
+  </tr>
+
+  <tr>
+  <td>status</td>
+  <td>String</td>
+  <td>
+    <ul>
+    <li><strong>invited</strong>, initial state</li>
+    <li><strong>expired</strong>, assessment link expired</li>
+    <li><strong>opened</strong>, after candidate accept the assessment link</li>
+    <li><strong>started</strong>, after candidate complete at least 1 assessment</li>
+    <li><strong>completed</strong>, after candidate complete all assessment</li>
+  </ul>
+    </td>
   </tr>
 
   <tr>
@@ -225,66 +378,77 @@ For security purposes, the ATS platform will be required to **whitelist Pulsifiâ
   </table>
 <br /><br />
 
-### Sample Invitation Post Request (anonymous)
+### 3. Get Assessment Invitation Result
+
+-   This endpoint will be used to get assessment invitation result after candidate complete all assessment(s).
+    <br /><br />
+
+#### URL (HTTP GET)
+
+-   https://api.pulsifi.me/public/invitations/ats/{invitation_code}/result
+-   Path Param
+    -   **_invitation_code_**, getting from generate assessment invitation response
+
+#### Content Type
+
+-   Format: application/json
+
+#### Response
+
+<br />
+  <table border=1>
+  <tr>
+  <th>Attribute</th>
+  <th>Type</th>
+  <th>Description</th>
+  </tr>
+
+  <tr>
+  <td>invitation_code</td>
+  <td>String</td>
+  <td>Pulsifi's invitation code</td>
+  </tr>
+
+  <tr>
+  <td>scores</td>
+  <td>Array of score:{ display:string, value:number }</td>
+  <td>Pulsifi's fit score<br/>
+   Example: <i>"scores": [
+    {
+      "display": "Pulsifi Role Fit Score",
+      "value": "45"
+    }
+  ]</i>
+  </td>
+  </tr>
+
+  <tr>
+  <td>report_url</td>
+  <td>String</td>
+  <td>Pulsifi's assessment report url<br/>
+    Example: <i>https://app.pulsifi.me/share/candidate/...</i>
+</td>
+  </tr>
+
+  </table>
+<br /><br />
+
+### 3.1 Get Assessment Invitation Result via Webhook
 
 <br />
 
-```
-curl -X 'POST' \
-'https://api.pulsifi.me/public/invitations/ats' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Basic YWRtaW46YWFhYQ==' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "job_id": "<pulsifi job id>",
-  "ext_reference_id": "<ATS reference id>",
-  "is_anonymous_candidate": true,
-  "deadline": "2021-08-12T12:21:59Z"
-}'
-
-```
-
-<br />
-
-### Sample Invitation Post Request (non-anonymous)
-
-<br />
-
-```
-curl -X 'POST' \
-'https://api.pulsifi.me/public/invitations/ats' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Basic YWRtaW46YWFhYQ==' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "job_id": "<pulsifi job id>",
-  "ext_reference_id": "<ATS reference id>",
-  "is_anonymous_candidate": false,
-  "email": "tester@test.com",
-  "first_name": "Tester",
-  "last_name": "User",
-  "deadline": "2021-08-12T12:21:59Z"
-}'
-```
-
-<br />
-
-## ATS PLATFORM WEBHOOK INTEGRATION
-
-<br />
-
-The ATS platform will be required to provide a **webhook callback url** if it requires Pulsifiâ€™s platform to return Pulsifi's fit score, culture score, and public profile share link when candidate completes Pulsifi's assessment.
+The ATS platform will be required to provide a **webhook callback url** <br/>
+**HTTP POST** will be fired when candidate fit score is ready.
 <br /><br />
 
 ### URL (HTTPS POST)
 
-- Webhook URL to be provided by the ATS platform
-- Sample Response: 200 OK
-
+-   Webhook URL to be provided by the ATS platform
+-   Sample Response: 200 OK
 
 ### Payload
 
-- Format: application/json
+-   Format: application/json
 
 <br />
 
@@ -377,3 +541,10 @@ The ATS platform will be required to provide a **webhook callback url** if it re
   }
 }
 ```
+
+## FAQ
+
+### 1. How can i get Pulsifi Job Id
+
+-   By default, you can always get it by accessing job module in the Pulsifi app.
+-   If you are the 3rd party ATS platform who did not have access to Pulsifi app, please request from Pulsifi account manager who manage the integration project.
