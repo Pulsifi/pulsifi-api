@@ -547,4 +547,8 @@ The ATS platform will be required to provide a **webhook callback url** <br/>
 ### 1. How can i get Pulsifi Job Id
 
 -   By default, you can always get it by accessing job module in the Pulsifi app.
+
+    -   Select a job you want the candidate apply to and view the job detail
+    -   The job id can be found on the browser url, example : *https://app.pulsifi.me/acquisition/jobs/{job_id}*
+
 -   If you are the 3rd party ATS platform who did not have access to Pulsifi app, please request from Pulsifi account manager who manage the integration project.
