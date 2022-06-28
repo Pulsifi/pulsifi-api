@@ -12,7 +12,7 @@ The following is a sample of Basic Authentication:
 
 ```
 username: <pulsifi_api_key>
-password: <blank, no password required>
+password: <pulsifi_api_secret>
 ```
 
 The following is a sample of a Post request to Pulsifi’s platform API endpoints:
@@ -24,13 +24,17 @@ curl --request POST \
   ...
 ```
 
-## Capture and store assessment result
+## Retrieve Candidate assessment result
 
-if assessment result data need to capture and store in your ATS platform, please provide a **webhook callback url** that accepts **HTTP post** method to Pulsifi
+If the assessment result data need to capture and store in your ATS platform,
+
+you can either get assessment result data based on HTTP GET https://api.pulsifi.me/public/invitations/ats/{invitation_code} or
+
+provide a **webhook callback url** that accepts **HTTP post** method to Pulsifi
 
 A **client ID** value will be included in the **HTTP post's header** with name of "client-id", which used to determine Pulsifi as the source.
 
-For best security practice, always **whitelist Pulsifi’s platform IP** by requesting IP address from Pulsifi
+For best security practice, always **whitelist Pulsifi’s API platform IP** by requesting IP address from Pulsifi.
 
 <br />
 <br />
@@ -39,7 +43,7 @@ For best security practice, always **whitelist Pulsifi’s platform IP** by requ
 
 <br />
 
-### 1. Generate Pulsifi Assessment Invitation Endpoint
+## 1. Generate Pulsifi Assessment Invitation Endpoint
 
 -   This endpoint will be used to generate a Pulsifi's assessment invitation link.
     <br /><br />
@@ -279,7 +283,7 @@ curl -X 'POST' \
 
 <br />
 
-### 2. Get Assessment Invitation Status
+## 2. Get Assessment Invitation Status
 
 -   This endpoint will be used to get assessment invitation status for progress tracking purpose.
     <br /><br />
@@ -378,10 +382,11 @@ curl -X 'POST' \
   </table>
 <br /><br />
 
-### 3. Get Assessment Invitation Result
+## 3. Get Assessment Result
 
--   This endpoint will be used to get assessment invitation result after candidate complete all assessment(s).
-    <br /><br />
+-   There are 2 ways in retrieving candidate's assessment result after candidate completed all assessments.
+
+### 3.1 Get Assessment Result via HTTP GET
 
 #### URL (HTTP GET)
 
@@ -444,18 +449,23 @@ curl -X 'POST' \
   </table>
 <br /><br />
 
-### 3.1 Get Assessment Invitation Result via Webhook
+### 3.2 Get Assessment Result via Webhook
 
 <br />
 
 The ATS platform will be required to provide a **webhook callback url** <br/>
-**HTTP POST** will be fired when candidate fit score is ready.
+**HTTP POST** will be triggered when candidate assessment result is ready.
 <br /><br />
 
 ### URL (HTTPS POST)
 
 -   Webhook URL to be provided by the ATS platform
 -   Sample Response: 200 OK
+
+### Header
+
+-   header 'client-id: sample-client-id'
+-   <i>'sample-client-id'</i> to be provided by Pulsifi
 
 ### Payload
 
