@@ -412,13 +412,17 @@ curl -X 'POST' \
   <tr>
   <td>scores</td>
   <td>Array of score:{ display:string, value:number }</td>
-  <td>Pulsifi's fit score<br/>
+  <td>Pulsifi's fit score. <br/><strong>No of fit score items returned is determine by the Pulsifi Job setup.</strong><br/>
    Example: <i>"scores": [
     {
       "display": "Pulsifi Role Fit Score",
+      "value": "67"
+    },
+    {
+      "display": "Pulsifi Organizational Fit Score",
       "value": "45"
-    }
-  ]</i>
+    }    
+  ]</i><br/>
   </td>
   </tr>
 
