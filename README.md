@@ -441,7 +441,7 @@ curl -X 'POST' \
   <tr>
   <td>report_url</td>
   <td>String</td>
-  <td>Pulsifi's assessment report url<br/>
+  <td>Pulsifi's assessment report url with 1 year validity period.<br/>
     Example: <i>https://app.pulsifi.me/share/candidate/...</i>
 </td>
   </tr>
@@ -504,7 +504,7 @@ The ATS platform will be required to provide a **webhook callback url** <br/>
   <td>profile_share_url</td>
   <td>String</td>
   <td>
-  Pulsifi's public profile share link.<br />
+  Pulsifi's assessment report url with 1 year validity period. <br />
   Example: https://app.pulsifi.me/share/candidate/...
   </td>
   </tr>
