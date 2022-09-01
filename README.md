@@ -1,34 +1,75 @@
 # Pulsifi Platform API Integration Guideline v1.1.0
 
-## Authentication (Basic Auth)
+## Authentication : OAuth2 Client Credentials Grant
 
 <br />
 
-Pulsifi's Integration Team will provide the necessary **API key/client ID**
+Pulsifi's Integration Team will provide the necessary **client ID/client secret**
 
-Pulsifi integration API calls will be authenticated using **basic authentication (base64 format)**.
+Pulsifi integration API calls will be authenticated using **OAuth2 Client Credentials Grant**.
 
-The following is a sample of Basic Authentication:
+<b>Prerequisite:</b> Client need get a valid access token to call the integration API's with the provided client id and secret.
+
+<br />
+
+The following is a sample of OAuth2 Client Credentials Grant credentials:
 
 ```
-username: <pulsifi_api_key>
-password: <pulsifi_api_secret>
+CLIENT-ID: <will be provided by Pulsifi>
+CLIENT-SECRET: <will be provided by Pulsifi>
 ```
 
-The following is a sample of a Post request to Pulsifi’s platform API endpoints:
+The following is a sample of a Post request to get access token:
 
 ```
 curl --request POST \
-  --url 'https://api.pulsifi.me/public/invitations/ats' \
-  --header 'Authorization: Basic YOUR-ENCODED-APIKEY'
+  --url 'https://api.pulsifi.me/partner/oauth2/token' \
+  --header 'Authorization: Basic YOUR-ENCODED-CLIENT-ID-CLIENT-SECRET' \
   ...
 ```
+
+#### Response
+
+<br />
+  <table border=1>
+  <tr>
+  <th>Attribute</th>
+  <th>Type</th>
+  <th>Description</th>
+  </tr>
+
+  <tr>
+  <td>access_token</td>
+  <td>String</td>
+  <td>Valid access token will be generated</td>
+  </tr>
+
+  <tr>
+  <td>scope</td>
+  <td>String</td>
+  <td>Default scope</td>
+  </tr>
+
+  <tr>
+  <td>expires_in</td>
+  <td>Number</td>
+  <td>Access token expiry datetime in unixtimestamp</td>
+  </tr>
+
+  <tr valign=top>
+  <td>token_type</td>
+  <td>String</td>
+  <td><b>Default</b> : Bearer
+  </td>
+  </tr>
+  </table>
+<br /><br />
 
 ## Retrieve Candidate assessment result
 
 If the assessment result data need to capture and store in your ATS platform,
 
-you can either get assessment result data based on HTTP GET https://api.pulsifi.me/public/invitations/ats/{invitation_code} or
+you can either get assessment result data based on HTTP GET https://api.pulsifi.me/partner/v1.0/ats/assessment_invitations/{invitation_code} or
 
 provide a **webhook callback url** that accepts **HTTP post** method to Pulsifi
 
@@ -50,7 +91,7 @@ For best security practice, always **whitelist Pulsifi’s API platform IP** by 
 
 #### URL (HTTP POST)
 
--   https://api.pulsifi.me/public/invitations/ats
+-   https://api.pulsifi.me/partner/v1.0/ats/assessment_invitations
 
 #### Content Type
 
@@ -245,9 +286,9 @@ For best security practice, always **whitelist Pulsifi’s API platform IP** by 
 
 ```
 curl -X 'POST' \
-'https://api.pulsifi.me/public/invitations/ats' \
+'https://api.pulsifi.me/partner/v1.0/ats/assessment_invitations' \
   -H 'accept: application/json' \
-  -H 'Authorization: Basic YWRtaW46YWFhYQ==' \
+  -H 'Authorization: Bearer <access_token>' \
   -H 'Content-Type: application/json' \
   -d '{
   "job_id": "<pulsifi job id>",
@@ -266,9 +307,9 @@ curl -X 'POST' \
 
 ```
 curl -X 'POST' \
-'https://api.pulsifi.me/public/invitations/ats' \
+'https://api.pulsifi.me/partner/v1.0/ats/assessment_invitations' \
   -H 'accept: application/json' \
-  -H 'Authorization: Basic YWRtaW46YWFhYQ==' \
+  -H 'Authorization: Bearer <access_token>' \
   -H 'Content-Type: application/json' \
   -d '{
   "job_id": "<pulsifi job id>",
@@ -290,7 +331,7 @@ curl -X 'POST' \
 
 #### URL (HTTP GET)
 
--   https://api.pulsifi.me/public/invitations/ats/{invitation_code}
+-   https://api.pulsifi.me/partner/v1.0/ats/assessment_invitations/{invitation_code}
 -   Path Param
     -   **_invitation_code_**, getting from generate assessment invitation response
 
@@ -390,7 +431,7 @@ curl -X 'POST' \
 
 #### URL (HTTP GET)
 
--   https://api.pulsifi.me/public/invitations/ats/{invitation_code}/result
+-   https://api.pulsifi.me/partner/v1.0/ats/assessment_invitations/{invitation_code}/result
 -   Path Param
     -   **_invitation_code_**, getting from generate assessment invitation response
 
