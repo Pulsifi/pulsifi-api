@@ -1,6 +1,6 @@
 # Pulsifi Platform API Integration Guideline
 
-## OAuth2 Client Credentials Grant
+## Authentication : OAuth2 Client Credentials Grant
 
 <br />
 
