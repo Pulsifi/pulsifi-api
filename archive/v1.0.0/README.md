@@ -1,4 +1,4 @@
-# Pulsifi Platform API Integration Guideline v1.1.0
+# Pulsifi Platform API Integration Guideline v1.0.0
 
 ## Authentication : OAuth2 Client Credentials Grant
 
