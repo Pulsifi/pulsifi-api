@@ -113,28 +113,32 @@ For best security practice, always **whitelist Pulsifi’s API platform IP** by 
   <td>title</td>
   <td>String</td>
   <td>Y</td>
-  <td></td>
+  <td>maximum 255 characters</td>
   </tr>
 
   <tr>
   <td>required_skills</td>
   <td>String (array)</td>
   <td>Y</td>
-  <td></td>
+  <td>maximum 10 items</td>
   </tr>
   
   <tr>
   <td>description</td>
   <td>String</td>
   <td>N</td>
-  <td></td>
+  <td>maximum 500 characters</td>
   </tr>
 
   <tr>
   <td>ext_reference_id</td>
   <td>String</td>
   <td>N</td>
-  <td>ATS platform job id.</td>
+  <td>ATS platform job id.
+  <ul>
+  <li>maximum 50 characters</li>
+  </ul>
+  </td>
   </tr>
 
   </table><br /><br />
@@ -195,6 +199,26 @@ For best security practice, always **whitelist Pulsifi’s API platform IP** by 
   </tr>
 
   </table><br /><br />
+
+#### Sample Publish Job Post Request
+
+<br />
+
+```
+curl -X 'POST' \
+'https://api.pulsifi.me/partner/v1.0/ats/jobs' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer <access_token>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "title": "Senior Data Scientist",
+  "required_skills": ["Python", "Machine Learning", "...."],
+  "description": "We are seeking a talented and motivated Data Scientist to join our team. As a Data Scientist, you will play a critical role in analyzing complex datasets...",
+  "ext_reference_id": "ats-001"
+}'
+```
+
+<br />  
 
 ## 2. Generate Pulsifi Assessment Invitation Endpoint
 
