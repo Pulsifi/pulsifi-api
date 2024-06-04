@@ -631,7 +631,7 @@ The ATS platform will be required to provide a **webhook callback url** <br/>
   <td>event_type</td>
   <td>String</td>
   <td>Pulsifi's event type<br />
-  Example: job_application_role_fit_score_created / job_application_culture_fit_score_created
+  Example: candidate_application__role_fit_score_ready / candidate_application_org_fit_score_ready
   </td>
   </tr>
   
@@ -677,7 +677,7 @@ The ATS platform will be required to provide a **webhook callback url** <br/>
   <td>fit_score</td>
   <td>Number</td>
   <td>
-  Pulsifi's Fit Score (Role Fit Score/ Culture Fit Score).
+  Pulsifi's Fit Score (Role Fit Score/ Org Fit Score).
   </td>
   </tr>
 
@@ -689,7 +689,7 @@ The ATS platform will be required to provide a **webhook callback url** <br/>
 
 ```
 {
-  "event_type": "job_application_role_fit_score_created",
+  "event_type": "candidate_application_role_fit_score_ready",
   "event_body": {
     "job_id": "<pulsifi job id>",
     "ext_reference_id": "<ATS job application reference id>",
@@ -703,13 +703,13 @@ The ATS platform will be required to provide a **webhook callback url** <br/>
 
 <br />
 
-### Sample Pulsifi Culture Fit Score Payload
+### Sample Pulsifi Org Fit Score Payload
 
 <br />
 
 ```
 {
-  "event_type": "job_application_culture_fit_score_created",
+  "event_type": "candidate_application_org_fit_score_ready",
   "event_body": {
     "job_id": "<pulsifi job id>",
     "ext_reference_id": "<ATS job application reference id>",
