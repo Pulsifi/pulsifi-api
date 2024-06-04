@@ -130,6 +130,13 @@ For best security practice, always **whitelist Pulsifi’s API platform IP** by 
   <td></td>
   </tr>
 
+  <tr>
+  <td>ext_reference_id</td>
+  <td>String</td>
+  <td>N</td>
+  <td>ATS platform job id.</td>
+  </tr>
+
   </table><br /><br />
 
 #### Response
@@ -168,6 +175,14 @@ For best security practice, always **whitelist Pulsifi’s API platform IP** by 
   <td>status</td>
   <td>String</td>
   <td><strong>active</strong>, initial state</td>
+  </tr>
+  
+  <tr>
+  <td>assessments</td>
+  <td>String (array)</td>
+  <td>
+    <strong>work_interest</strong>. <strong>personality</strong>, <strong>work_value</strong>, <strong>reasoning_verbal</strong>, <strong>reasoning_logic</strong>, <strong>reasoning_numeric</strong>
+  </td>
   </tr>
 
   <tr>
@@ -279,6 +294,20 @@ For best security practice, always **whitelist Pulsifi’s API platform IP** by 
   Candidate's last name.
   <ul>
   <li>maximum 255 characters</li>
+  </ul>
+  </td>
+  </tr>
+
+  <tr valign=top>
+  <td>skills</td>
+  <td>String (array)</td>
+  <td>
+  Y
+  </td>
+  <td>
+  Candidate's skills
+  <ul>
+  <li>maximum 20 items</li>
   </ul>
   </td>
   </tr>
