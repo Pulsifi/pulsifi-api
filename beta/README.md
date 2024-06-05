@@ -1,5 +1,22 @@
 # Pulsifi Platform API Integration Guideline v2.0.0 (BETA)
 
+## Introduction
+<br />
+
+The Pulsifi API is organized around REST. Our API accepts json-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
+
+We offer Staging Environment API (Refer to FAQ section below) and you can start using by adding prefix of <strong>"staging."</strong> in Pulsifi API url
+
+
+#### Example
+
+```
+curl --request POST \
+  --url 'https://staging.api.pulsifi.me/partner/oauth2/token' \
+  --header 'Authorization: Basic YOUR-ENCODED-CLIENT-ID-CLIENT-SECRET' \
+  ...
+```
+
 ## Authentication : OAuth2 Client Credentials Grant
 
 <br />
@@ -304,7 +321,7 @@ curl -X 'POST' \
   </tr>
 
   <tr valign=top>
-  <td>skills</td>
+  <td>skills (Coming soon)</td>
   <td>String (array)</td>
   <td>
   Y
@@ -412,7 +429,6 @@ curl -X 'POST' \
   -d '{
   "job_id": "<pulsifi job id>",
   "ext_reference_id": "<ATS reference id>",
-  "is_anonymous_candidate": false,
   "email": "tester@test.com",
   "first_name": "Tester",
   "last_name": "User",
@@ -471,18 +487,6 @@ curl -X 'POST' \
   <td>job_id</td>
   <td>String (uuid)</td>
   <td>Job ID provided by Pulsifi.</td>
-  </tr>
-
-  <tr valign=top>
-  <td>is_anonymous_candidate</td>
-  <td>Boolean</td>
-  <td>
-  Options:
-  <ul>
-  <li>true: Anonymous mode</li>
-  <li>false: Non-anonymous mode</li>
-  </ul>
-  </td>
   </tr>
 
   <tr>
@@ -739,5 +743,6 @@ The ATS platform will be required to provide a **webhook callback url** <br/>
 
 -   If you are the 3rd party ATS platform who did not have access to Pulsifi app, please request from Pulsifi account manager who manage the integration project.
 
--  If you are partner, please use publish job endpoint to obtain a job id
+-  If you want to start with Staging API Environment, please request from Pulsifi account manager who manage the integration project.
 
+-  If you are partner, please use publish job endpoint to obtain a job id
