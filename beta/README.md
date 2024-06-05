@@ -5,16 +5,20 @@
 
 The Pulsifi API is organized around REST. Our API accepts json-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
 
-We offer Staging Environment API (Refer to FAQ section below) and you can start using by adding prefix of <strong>"staging."</strong> in Pulsifi API url
+We offer <strong>Staging Environment API</strong> (Refer to FAQ section below) and you can start using by adding prefix of <strong>"staging."</strong> in Pulsifi API url
 
 
 #### Example
 
 ```
 curl --request POST \
-  --url 'https://staging.api.pulsifi.me/partner/oauth2/token' \
-  --header 'Authorization: Basic YOUR-ENCODED-CLIENT-ID-CLIENT-SECRET' \
-  ...
+'https://staging.api.pulsifi.me/partner/oauth2/token' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic YOUR-ENCODED-CLIENT-ID-CLIENT-SECRET' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "grant_type": "client_credentials"
+}'
 ```
 
 ## Authentication : OAuth2 Client Credentials Grant
@@ -40,9 +44,13 @@ The following is a sample of a Post request to get access token:
 
 ```
 curl --request POST \
-  --url 'https://api.pulsifi.me/partner/oauth2/token' \
-  --header 'Authorization: Basic YOUR-ENCODED-CLIENT-ID-CLIENT-SECRET' \
-  ...
+'https://api.pulsifi.me/partner/oauth2/token' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic YOUR-ENCODED-CLIENT-ID-CLIENT-SECRET' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "grant_type": "client_credentials"
+}'
 ```
 
 #### Response
@@ -642,7 +650,7 @@ The ATS platform will be required to provide a **webhook callback url** <br/>
   <td>event_type</td>
   <td>String</td>
   <td>Pulsifi's event type<br />
-  Example: candidate_application__role_fit_score_ready / candidate_application_org_fit_score_ready
+  Example: candidate_assessment__role_fit_score_ready / candidate_assessment_org_fit_score_ready
   </td>
   </tr>
   
@@ -700,7 +708,7 @@ The ATS platform will be required to provide a **webhook callback url** <br/>
 
 ```
 {
-  "event_type": "candidate_application_role_fit_score_ready",
+  "event_type": "candidate_assessment_role_fit_score_ready",
   "event_body": {
     "job_id": "<pulsifi job id>",
     "ext_reference_id": "<ATS job application reference id>",
@@ -722,7 +730,7 @@ The ATS platform will be required to provide a **webhook callback url** <br/>
 
 ```
 {
-  "event_type": "candidate_application_org_fit_score_ready",
+  "event_type": "candidate_assessment_org_fit_score_ready",
   "event_body": {
     "job_id": "<pulsifi job id>",
     "ext_reference_id": "<ATS job application reference id>",
