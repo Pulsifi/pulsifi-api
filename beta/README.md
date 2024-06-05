@@ -253,19 +253,6 @@ curl -X 'POST' \
   </tr>
 
   <tr valign=top>
-  <td>is_anonymous_candidate</td>
-  <td>Boolean</td>
-  <td>Y</td>
-  <td>
-  Options:
-  <ul>
-  <li>true: Anonymous mode</li>
-  <li>false: Non-anonymous mode</li>
-  </ul>
-  </td>
-  </tr>
-  
-  <tr valign=top>
   <td>ext_reference_id</td>
   <td>String</td>
   <td>Y</td>
@@ -280,9 +267,7 @@ curl -X 'POST' \
   <tr valign=top>
   <td>email</td>
   <td>String</td>
-  <td>
-  Y (non-anonymous mode)<br />
-  N (anonymous mode)
+  <td>Y
   </td>
   <td>
   Candidate's email.
@@ -295,9 +280,7 @@ curl -X 'POST' \
   <tr valign=top>
   <td>first_name</td>
   <td>String</td>
-  <td>
-  Y (non-anonymous mode)<br />
-  N (anonymous mode)
+  <td>Y
   </td>
   <td>
   Candidate's first name.
@@ -310,9 +293,7 @@ curl -X 'POST' \
   <tr valign=top>
   <td>last_name</td>
   <td>String</td>
-  <td>
-  Y (non-anonymous mode)<br />
-  N (anonymous mode)
+  <td>Y
   </td>
   <td>
   Candidate's last name.
@@ -380,18 +361,6 @@ curl -X 'POST' \
   <td>Job ID provided by Pulsifi.</td>
   </tr>
 
-  <tr valign=top>
-  <td>is_anonymous_candidate</td>
-  <td>Boolean</td>
-  <td>
-  Options:
-  <ul>
-  <li>true: Anonymous mode</li>
-  <li>false: Non-anonymous mode</li>
-  </ul>
-  </td>
-  </tr>
-
   <tr>
   <td>invitation_code.</td>
   <td>String</td>
@@ -430,28 +399,7 @@ curl -X 'POST' \
   </table>
 <br /><br />
 
-#### Sample Invitation Post Request (anonymous)
-
-<br />
-
-```
-curl -X 'POST' \
-'https://api.pulsifi.me/partner/v1.0/ats/assessment_invitations' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer <access_token>' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "job_id": "<pulsifi job id>",
-  "ext_reference_id": "<ATS reference id>",
-  "is_anonymous_candidate": true,
-  "deadline": "2021-08-12T12:21:59Z"
-}'
-
-```
-
-<br />
-
-#### Sample Invitation Post Request (non-anonymous)
+#### Sample Invitation Post Request
 
 <br />
 
@@ -618,21 +566,23 @@ curl -X 'POST' \
    - <i>maximum : 100</i><br/><br/>
    Example: <br/><i>"scores": [
     {
-      "display": "Pulsifi Role Fit Score",
-      "value": "67"
+      "score_type": "role_fit",
+      "score_value": 67,
+      "score_format": 100,
     },<br/>
     {
-      "display": "Pulsifi Organizational Fit Score",
-      "value": "45"
+      "score_type": "org_fit",
+      "score_value": 45
+      "score_format": 100
     }    
   ]</i><br/>
   </td>
   </tr>
 
   <tr>
-  <td>report_url</td>
+  <td>report_profile_link</td>
   <td>String</td>
-  <td>Pulsifi's assessment report url with 1 year validity period.<br/>
+  <td>Pulsifi's assessment report with 1 year validity period.<br/>
     Example: <i>https://app.pulsifi.me/share/candidate/...</i>
   </td>
   </tr>
@@ -701,10 +651,10 @@ The ATS platform will be required to provide a **webhook callback url** <br/>
   </tr>
 
   <tr>
-  <td>report_url</td>
+  <td>report_profile_link</td>
   <td>String</td>
   <td>
-  Pulsifi's assessment report url with 1 year validity period. <br />
+  Pulsifi's assessment report link with 1 year validity period. <br />
   Example: https://app.pulsifi.me/share/candidate/...
   </td>
   </tr>
@@ -746,10 +696,12 @@ The ATS platform will be required to provide a **webhook callback url** <br/>
   "event_body": {
     "job_id": "<pulsifi job id>",
     "ext_reference_id": "<ATS job application reference id>",
-    "profile_url": "https://app.pulsifi.me/share/candidate/...",
+    "report_profile_link": "https://app.pulsifi.me/share/candidate/...",
     "report_pdf_link": "https://document.pulsifi.me/candidate/xxx/report.pdf",
     "invitation_code": "<pulsifi job application id reference>",
-    "fit_score": 9.4
+    "score_type":"role_fit",
+    "score_value": 94,
+    "score_format: 100,
   }
 }
 ```
@@ -766,11 +718,13 @@ The ATS platform will be required to provide a **webhook callback url** <br/>
   "event_body": {
     "job_id": "<pulsifi job id>",
     "ext_reference_id": "<ATS job application reference id>",
-    "profile_url": "https://app.pulsifi.me/share/candidate/...",
+    "report_profile_link": "https://app.pulsifi.me/share/candidate/...",
     "report_link": "https://document.pulsifi.me/candidate/xxx/report.pdf",
     "invitation_code": "<pulsifi job application id reference>",
-    "fit_score": 9.4
-  }
+    "score_type":"org_fit",
+    "score_value": 71,
+    "score_format: 100,  
+    }
 }
 ```
 
