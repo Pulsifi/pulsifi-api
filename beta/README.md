@@ -559,13 +559,17 @@ curl -X 'POST' \
 
   <tr>
   <td>scores</td>
-  <td>Array of score:{ display:string, value:number }<br/>
+  <td>Array of score:{ <br/>
+    score_type:string, <br/> 
+    score_value:number,<br/> 
+    score_format:number 
+    }<br/>
   </td>
   <td>Pulsifi's fit score. <br/><strong>No of fit score items returned is determine by the Pulsifi Job setup.</strong><br/>
     Possible display's data: <br/>
   - <i>Pulsifi Role Fit Score</i><br/>
   - <i>Pulsifi Organizational Fit Score</i><br/><br/>
-  value's data:<br/>
+  score_value's data:<br/>
    - <i>minimum : 0</i><br/>
    - <i>maximum : 100</i><br/><br/>
    Example: <br/><i>"scores": [
