@@ -332,13 +332,53 @@ curl -X 'POST' \
   <td>skills (Coming soon)</td>
   <td>String (array)</td>
   <td>
-  Y
+  N
   </td>
   <td>
   Candidate's skills
   <ul>
   <li>maximum 20 items</li>
   </ul>
+  Example: <br/><i>"skills": [
+  "Python","AWS","Leadership"
+  ]
+  </td>
+  </tr>
+
+  <tr valign=top>
+  <td>work_experiences (Coming soon)</td>
+  <td>Array of work_experience:{ <br/>
+    role:string (Y)<br/> 
+    organization (N)<br/>
+    responsibility_achievement:string (N)<br/> 
+    start_date:date (Y)<br/>
+    end_date:date (N)<br/>
+    }<br/>
+  </td>
+  <td>
+  N
+  </td>
+  <td>
+  Candidate's work exprience
+  <ul>
+  <li>maximum 10 items</li>
+  </ul>
+  Example: <br/><i>"work_experiences": [
+  {
+    "role": "Tech Lead",
+    "organization": "Pulsifi",
+    "responsibility_achievement": "Leading a team of 6",
+    "start_date": "2023-02-15',
+    "end_date": "",
+  },<br/>
+  {
+    "role": "Senior Software Engineer",
+    "organization": "Tesla",
+    "responsibility_achievement": "Deliver feature on time with high code quality",
+    "start_date": "2020-04-01',
+    "end_date": "2023-01-30"
+  }    
+]</i><br/>
   </td>
   </tr>
 
