@@ -151,7 +151,7 @@ For best security practice, always **whitelist Pulsifi’s API platform IP** by 
   <tr>
   <td>description</td>
   <td>String</td>
-  <td>N</td>
+  <td>Y</td>
   <td>maximum 500 characters</td>
   </tr>
 
