@@ -82,8 +82,8 @@ curl --request POST 'https://api.pulsifi.me/partner/oauth2/token' \
 
 Creates a new candidate invitation in the Pulsifi system.
 
-- **Endpoint:** `POST /partner/v1.0/standard/candidate`
-- **Request URL:** `https://api.pulsifi.me/partner/v1.0/standard/candidate`
+- **Endpoint:** `POST /partner/v1.0/standard/candidates`
+- **Request URL:** `https://api.pulsifi.me/partner/v1.0/standard/candidates`
 
 #### **Headers:**
 
@@ -200,7 +200,7 @@ Creates a new candidate invitation in the Pulsifi system.
 #### **Example cURL:**
 
 ```bash
-curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidate' \
+curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer <access_token>' \
   -H 'Content-Type: application/json' \
@@ -270,8 +270,8 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidate' \
 
 Use this endpoint to get candidate results or details.
 
-- **Endpoint:** `GET /partner/v1.0/standard/candidate/{candidate_id}`
-- **Request URL:** `https://api.pulsifi.me/partner/v1.0/standard/candidate/{candidate_id}`
+- **Endpoint:** `GET /partner/v1.0/standard/candidates/{candidate_id}`
+- **Request URL:** `https://api.pulsifi.me/partner/v1.0/standard/candidates/{candidate_id}`
 
 #### **Headers:**
 
@@ -289,7 +289,7 @@ Use this endpoint to get candidate results or details.
 #### **Example cURL:**
 
 ```bash
-  curl -X GET 'https://api.pulsifi.me/partner/v1.0/standard/candidate/{candidate_id}/details' \
+  curl -X GET 'https://api.pulsifi.me/partner/v1.0/standard/candidates/{candidate_id}' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer <access_token>' \
   -H 'Content-Type: application/json'
@@ -411,7 +411,7 @@ Use this endpoint to get candidate results or details.
       - **Type**: Integer
       - **Nullable**: No
 
-    - **`score_type`**: The type of the score (e.g., `work_value`, `work_style`,`work_experience`,`reasoning_verbal`, `reasoning_logical`,`reasoning_numeric`, `interest_riasec`, `hard_skills`).
+    - **`score_type`**: The type of the score (e.g., `hard_skills`, `work_experience`,`work_interest`,`work_style`, `work_value`,`reasoning_average`, `reasoning_logical`, `reasoning_numeric`, `reasoning_verbal`).
 
       - **Type**: String
       - **Nullable**: No
