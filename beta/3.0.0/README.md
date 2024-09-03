@@ -111,6 +111,7 @@ Creates a new candidate invitation in the Pulsifi system.
 
   - **Required**: Yes
   - **Type**: Boolean
+  - **Default**: false
   - **Nullable**: Yes
   - **Behavior**: If set to `true`, the `email`, `first_name`, and `last_name` fields become optional.
 
@@ -135,14 +136,14 @@ Creates a new candidate invitation in the Pulsifi system.
   - **Max Length**: 255 characters
   - **Nullable**: Yes
 
-- **`skills`**: A list of skills possessed by the candidate.
+- **`skills`**: A list of skills possessed by the candidate. (Coming Soon)
 
   - **Required**: No
   - **Type**: Array of Strings
   - **Max Items**: 20
   - **Nullable**: No
 
-- **`work_experiences`**: A list of the candidate's work experiences.
+- **`work_experiences`**: A list of the candidate's work experiences. (Coming Soon)
 
   - **Required**: No
   - **Type**: Array of Objects
@@ -194,8 +195,9 @@ Creates a new candidate invitation in the Pulsifi system.
 - **`deadline`**: The assessment invitation deadline.
   - **Required**: No
   - **Type**: String (UTC Date)
+  - **Default**: 3 months from the current date
   - **Nullable**: No
-  - **Description**: Must be within 3 months from the current date.
+  - **Description**: Must be within 3 months from the current date. if not provided , the deadline will be defaulted to 3 months.
 
 #### **Example cURL:**
 
@@ -207,6 +209,7 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
   -d '{
     "job_id": "<Pulsifi Job ID>",
     "ext_reference_id": "<ATS Reference ID>",
+    "is_anonymous_candidate": false,
     "email": "johndoe@gmail.com",
     "first_name": "John",
     "last_name": "Doe",
@@ -218,6 +221,10 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 
 ```json
 {
+  "is_anonymous_candidate": false,
+  "email": "johndoe@gmail.com",
+  "first_name": "John",
+  "last_name": "Doe",
   "status": "invited",
   "ext_reference_id": "string",
   "job_id": "uuid",
@@ -244,6 +251,26 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 
   - **Type**: String (UUID)
   - **Nullable**: No
+
+- **`is_anonymous_candidate`**: Indicates whether the candidate's details should be anonymous.
+
+  - **Type**: Boolean
+  - **Nullable**: Yes
+
+- **`email`**: The candidate's email address.
+
+  - **Type**: String
+  - **Nullable**: Yes
+
+- **`first_name`**: The candidate's first name.
+
+  - **Type**: String
+  - **Nullable**: Yes
+
+- **`last_name`**: The candidate's last name.
+
+  - **Type**: String
+  - **Nullable**: Yes
 
 - **`candidate_id`**: The unique identifier for the candidate in the Pulsifi system. This value should be stored in your database for future queries about the candidate's assessment status and results.
 
@@ -302,6 +329,10 @@ Use this endpoint to get candidate results or details.
   "status": "completed",
   "ext_reference_id": "ATS12345",
   "job_id": "uuid",
+  "is_anonymous_candidate": false,
+  "email": "johndoe@gmail.com",
+  "first_name": "John",
+  "last_name": "Doe",
   "candidate_id": "string",
   "invitation_link": "string",
   "invitation_expired_at": "2024-12-31T23:59:59Z",
@@ -325,6 +356,16 @@ Use this endpoint to get candidate results or details.
       "score_format": 100,
       "score_type": "reasoning_numeric",
       "score_value": 88
+    },
+    {
+      "score_format": 100,
+      "score_type": "reasoning_verbal",
+      "score_value": 88
+    },
+    {
+      "score_format": 100,
+      "score_type": "reasoning_logical",
+      "score_value": 88
     }
   ]
 }
@@ -346,6 +387,26 @@ Use this endpoint to get candidate results or details.
 
   - **Type**: String (UUID)
   - **Nullable**: No
+
+- **`is_anonymous_candidate`**: Indicates whether the candidate's details should be anonymous.
+
+  - **Type**: Boolean
+  - **Nullable**: Yes
+
+- **`email`**: The candidate's email address.
+
+  - **Type**: String
+  - **Nullable**: Yes
+
+- **`first_name`**: The candidate's first name.
+
+  - **Type**: String
+  - **Nullable**: Yes
+
+- **`last_name`**: The candidate's last name.
+
+  - **Type**: String
+  - **Nullable**: Yes
 
 - **`candidate_id`**: The unique candidate identifier in the Pulsifi system.
 
@@ -411,7 +472,7 @@ Use this endpoint to get candidate results or details.
       - **Type**: Integer
       - **Nullable**: No
 
-    - **`score_type`**: The type of the score (e.g., `hard_skills`, `work_experience`,`work_interest`,`work_style`, `work_value`,`reasoning_average`, `reasoning_logical`, `reasoning_numeric`, `reasoning_verbal`).
+    - **`score_type`**: The type of the score (e.g., `hard_skill`, `work_experience`,`work_interest`,`work_style`, `work_value`,`reasoning_average`, `reasoning_logical`, `reasoning_numeric`, `reasoning_verbal`).
 
       - **Type**: String
       - **Nullable**: No
