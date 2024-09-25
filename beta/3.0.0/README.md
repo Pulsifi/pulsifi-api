@@ -484,6 +484,197 @@ Use this endpoint to get candidate results or details.
 
 ---
 
+### **3. Get Candidate Result / Details With Invitation Code**
+
+Use this endpoint to get candidate results or details.
+
+- **Endpoint:** `GET /partner/v1.0/standard/candidates/invitation/{invite_code}`
+- **Request URL:** `https://api.pulsifi.me/partner/v1.0/standard/candidates/invitation/{invite_code}`
+
+#### **Headers:**
+
+- `Accept: application/json`
+- `Authorization: Bearer <access_token>`
+
+#### **Path Parameter:**
+
+- **`invite_code`**: Another unique identifier for the candidate in the Pulsifi system.
+  - **Required**: Yes
+  - **Type**: String
+  - **Max Length**: Varies
+  - **Nullable**: No
+
+#### **Example cURL:**
+
+```bash
+  curl -X GET 'https://api.pulsifi.me/partner/v1.0/standard/candidates/invitation/{invite_code}' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer <access_token>' \
+  -H 'Content-Type: application/json'
+```
+
+#### **Response Example:**
+
+```json
+{
+  "status": "completed",
+  "ext_reference_id": "ATS12345",
+  "job_id": "uuid",
+  "is_anonymous_candidate": false,
+  "email": "johndoe@gmail.com",
+  "first_name": "John",
+  "last_name": "Doe",
+  "candidate_id": "string",
+  "invitation_link": "string",
+  "invitation_expired_at": "2024-12-31T23:59:59Z",
+  "created_at": "2024-09-02T10:30:00Z",
+  "report_pdf_link": "https://link.to/pdf",
+  "report_profile_link": "https://link.to/profile",
+  "scores": [
+    {
+      "score_format": 100,
+      "score_type": "role_fit",
+      "score_value": 85
+    },
+    {
+      "score_format": 100,
+      "score_type": "organizational_fit",
+      "score_value": 90
+    }
+  ],
+  "additional_scores": [
+    {
+      "score_format": 100,
+      "score_type": "reasoning_numeric",
+      "score_value": 88
+    },
+    {
+      "score_format": 100,
+      "score_type": "reasoning_verbal",
+      "score_value": 88
+    },
+    {
+      "score_format": 100,
+      "score_type": "reasoning_logical",
+      "score_value": 88
+    }
+  ]
+}
+```
+
+#### **Response Body:**
+
+- **`status`**: The current status of the candidate's assessment (e.g., `invited`, `expired`, `opened`, `started`, `completed`).
+
+  - **Type**: String
+  - **Nullable**: No
+
+- **`ext_reference_id`**: The external job application ID from the ATS.
+
+  - **Type**: String
+  - **Nullable**: No
+
+- **`job_id`**: The unique job identifier in the Pulsifi system.
+
+  - **Type**: String (UUID)
+  - **Nullable**: No
+
+- **`is_anonymous_candidate`**: Indicates whether the candidate's details should be anonymous.
+
+  - **Type**: Boolean
+  - **Nullable**: Yes
+
+- **`email`**: The candidate's email address.
+
+  - **Type**: String
+  - **Nullable**: Yes
+
+- **`first_name`**: The candidate's first name.
+
+  - **Type**: String
+  - **Nullable**: Yes
+
+- **`last_name`**: The candidate's last name.
+
+  - **Type**: String
+  - **Nullable**: Yes
+
+- **`candidate_id`**: The unique candidate identifier in the Pulsifi system.
+
+  - **Type**: String
+  - **Nullable**: No
+
+- **`invitation_link`**: URL to the candidate's assessment invitation.
+
+  - **Type**: String (URL)
+  - **Nullable**: No
+
+- **`invitation_expired_at`**: The expiration date and time of the invitation link (UTC format).
+
+  - **Type**: String (UTC Date)
+  - **Nullable**: No
+
+- **`created_at`**: The date and time when the invitation was created (UTC format).
+
+  - **Type**: String (UTC Date)
+  - **Nullable**: No
+
+- **`report_pdf_link`**: URL to download the candidate's assessment report in PDF format. The link is valid for up to 3 months.
+
+  - **Type**: String (URL)
+  - **Nullable**: Yes
+
+- **`report_profile_link`**: URL to view the candidate's assessment profile.
+
+  - **Type**: String (URL)
+  - **Nullable**: Yes
+
+- **`scores`**: A list of Pulsifi fit scores objects representing different aspects of the candidate's assessment.
+
+  - **Type**: Array of Objects
+  - **Nullable**: Yes
+
+  - Each score object should contain:
+
+    - **`score_format`**: The format of the score (e.g., 100 for percentage).
+
+      - **Type**: Integer
+      - **Nullable**: No
+
+    - **`score_type`**: The type of the score (e.g., `role_fit`, `organizational_fit`).
+
+      - **Type**: String
+      - **Nullable**: No
+
+    - **`score_value`**: The value of the score.
+      - **Type**: Integer
+      - **Max Value**: 100
+      - **Nullable**: No
+
+- **`additional_scores`**: A list of additional score objects that contribute to actual Pulsifi fit scores.
+
+  - **Type**: Array of Objects
+  - **Nullable**: Yes
+
+  - Each additional score object should contain:
+
+    - **`score_format`**: The format of the score (e.g., 100 for percentage).
+
+      - **Type**: Integer
+      - **Nullable**: No
+
+    - **`score_type`**: The type of the score (e.g., `hard_skill`, `work_experience`,`work_interest`,`work_style`, `work_value`,`reasoning_average`, `reasoning_logical`, `reasoning_numeric`, `reasoning_verbal`).
+
+      - **Type**: String
+      - **Nullable**: No
+
+    - **`score_value`**: The value of the score.
+      - **Type**: Integer
+      - **Max Value**: 100
+      - **Nullable**: No
+
+---
+
 ## **FAQ**
 
 ### **What is `job_id`?**
