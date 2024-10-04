@@ -171,13 +171,13 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/jobs' \
 - **`status`**: The status of the job.
 
   - **Type**: Enum
-  - **Default**: 'active'
+  - **Default**: `active`
   - **Nullable**: No
 
 - **`employment_type`**: The employment_type of the job.
 
   - **Type**: Enum
-  - **Default**: 'fulltime'
+  - **Default**: `fulltime`
   - **Nullable**: No
 
 - **`description`**: A detailed description of the job.
@@ -1196,6 +1196,131 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
   "is_deleted": true,
   "created_at": "2024-10-04T04:06:55.124Z",
   "created_by": 1
+}
+```
+
+#### **Response Body:**
+
+- **`id`**: The unique identifier for the webhook created in the Pulsifi system.
+
+  - **Type**: String (UUID)
+  - **Nullable**: No
+
+- **`partner_id`**: The unique identifier for partners in the Pulsifi system.
+
+  - **Type**: Number
+  - **Nullable**: No
+
+- **`name`**: The name of the webhook.
+
+  - **Type**: String
+  - **Nullable**: No
+
+- **`url`**: The URL to which the webhook will send data.
+
+  - **Type**: String (URL)
+  - **Nullable**: No
+
+- **`events`**: The events that trigger the webhook.
+
+  - **Type**: Array of Enum values
+  - **Nullable**: No
+
+- **`status`**: The status of the webhook (e.g., `active`, `inactive`).
+
+  - **Type**: Enum
+  - **Nullable**: No
+
+- **`is_deleted`**: Indicates whether the webhook is deleted.
+
+  - **Type**: String (UTC Date)
+  - **Nullable**: No
+
+- **`created_at`**: The date and time when the webhook was created (in UTC format).
+
+  - **Type**: String (UTC Date)
+  - **Nullable**: No
+
+- **`created_by`**: The unique identifier for partners in the Pulsifi system.
+
+  - **Type**: Number
+  - **Nullable**: No
+
+</details>
+
+<details>
+<summary><strong style="font-size: 1.3em;">Get All Webhook Details</strong></summary>
+
+#### **Use this endpoint to get one webhook details.**
+
+- **Endpoint:** `GET /partner/v1.0/partner_webhook`
+- **Request URL:** `https://api.pulsifi.me/partner/v1.0/partner_webhook`
+
+#### **Headers:**
+
+- `Accept: application/json`
+- `Authorization: Bearer <access_token>`
+
+#### **Query Parameter:**
+
+?page=1&page_size=25&sort_by=created_at&status=active&q=Webhook%201'
+
+- **`page`**: Indicates which specific page of results you want to retrieve.
+
+  - **Required**: No
+  - **Default**: 1
+  - **Type**: Number
+  - **Nullable**: No
+
+- **`page_size`**: Indicates how many items should be included in each page of results.
+
+  - **Required**: No
+  - **Type**: Number
+  - **Default**: 25
+  - **Nullable**: No
+
+  - **`sort_by`**: Comma separated sortable fields (e.g., `created_at`, `+created_at`, `-created_at`, `name`, `+name`, `-name`).
+  - **Required**: No
+  - **Type**: String
+  - **Nullable**: No
+
+  - **`status`**: The status of the webhook (e.g., `active`, `inactive`).
+  - **Required**: No
+  - **Type**: String
+  - **Nullable**: No
+
+  - **`q`**: Keyword to filter with webhook name.
+  - **Required**: No
+  - **Type**: String
+  - **Nullable**: No
+
+#### **Example cURL:**
+
+```bash
+  curl -X GET 'https://api.pulsifi.me/partner/v1.0/partner_webhook/?page=1&page_size=25&sort_by=created_at&status=active&q=Webhook%201' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <access_token>' \
+```
+
+#### **Response Example:**
+
+```json
+{
+  "total_count": 1,
+  "result": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "partner_id": 1,
+      "name": "Webhook 1",
+      "url": "https://example.com/my/webhook/endpoint",
+      "events": ["candidate_application_result_ready"],
+      "status": "active",
+      "is_deleted": false,
+      "created_at": "2024-10-04T04:06:55.124Z",
+      "created_by": 1
+    }
+  ]
 }
 ```
 
