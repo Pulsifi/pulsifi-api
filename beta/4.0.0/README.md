@@ -1609,21 +1609,6 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 
 ## **FAQ**
 
-### **What is `job_id`?**
-
-- You can obtain the `job_id` by accessing the job module in the Pulsifi app:
-
-  - Select the job you want the candidate to apply to and view the job details.
-  - The job ID can be found in the browser URL, for example: *https://app.pulsifi.me/acquisition/jobs/{job_id}*.
-
-- If you are a third-party ATS platform without access to the Pulsifi app, please request it from the Pulsifi account manager who manages the integration project.
-
-- If you are a partner, please use these [Job Endpoints](#job-endpoints) to obtain a job ID.
-
-### **How can I set up webhooks for receiving candidate results from Pulsifi?**
-
-- You can manage webhooks through the [Webhook Endpoints](#webhook-endpoints) and configure multiple webhooks to receive candidate results upon completion. Each webhook must have a unique combination of event type and URL. While there is no limit to the number of webhooks you can create, each must have a distinct event-URL pair.
-
 ### **How do I encode client credentials?**
 
 Use Base64 encoding for your client ID and client secret in the format `client_id:client_secret`. Tools like [base64encode.org](https://www.base64encode.org/) can help with this.
