@@ -909,8 +909,8 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 
 #### **Creates a new webhook in the Pulsifi system:**
 
-- **Endpoint:** `POST /partner/v1.0/partner_webhook`
-- **Request URL:** `https://api.pulsifi.me/partner/v1.0/partner_webhook`
+- **Endpoint:** `POST /partner/v1.0/webhooks`
+- **Request URL:** `https://api.pulsifi.me/partner/v1.0/webhooks`
 
 #### **Headers:**
 
@@ -948,7 +948,7 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 #### **Example cURL:**
 
 ```bash
-  curl -X POST 'https://api.pulsifi.me/partner/v1.0/partner_webhook' \
+  curl -X POST 'https://api.pulsifi.me/partner/v1.0/webhooks' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <access_token>' \
@@ -1031,8 +1031,8 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 
 #### **Use this endpoint to update webhook in the Pulsifi system.**
 
-- **Endpoint:** `PUT /partner/v1.0/partner_webhook/{webhook_id}`
-- **Request URL:** `https://api.pulsifi.me/partner/v1.0/partner_webhook/{webhook_id}`
+- **Endpoint:** `PUT /partner/v1.0/webhooks/{webhook_id}`
+- **Request URL:** `https://api.pulsifi.me/partner/v1.0/webhooks/{webhook_id}`
 
 #### **Headers:**
 
@@ -1076,7 +1076,7 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 #### **Example cURL:**
 
 ```bash
-  curl -X PUT 'https://api.pulsifi.me/partner/v1.0/partner_webhook/{webhook_id}' \
+  curl -X PUT 'https://api.pulsifi.me/partner/v1.0/webhooks/{webhook_id}' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <access_token>' \
@@ -1159,8 +1159,8 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 
 #### **Use this endpoint to delete webhook in the Pulsifi system.**
 
-- **Endpoint:** `DELETE /partner/v1.0/partner_webhook/{webhook_id}`
-- **Request URL:** `https://api.pulsifi.me/partner/v1.0/partner_webhook/{webhook_id}`
+- **Endpoint:** `DELETE /partner/v1.0/webhooks/{webhook_id}`
+- **Request URL:** `https://api.pulsifi.me/partner/v1.0/webhooks/{webhook_id}`
 
 #### **Headers:**
 
@@ -1177,7 +1177,7 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 #### **Example cURL:**
 
 ```bash
-  curl -X DELETE 'https://api.pulsifi.me/partner/v1.0/partner_webhook/{webhook_id}' \
+  curl -X DELETE 'https://api.pulsifi.me/partner/v1.0/webhooks/{webhook_id}' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <access_token>' \
@@ -1253,8 +1253,8 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 
 #### **Use this endpoint to get one webhook details.**
 
-- **Endpoint:** `GET /partner/v1.0/partner_webhook`
-- **Request URL:** `https://api.pulsifi.me/partner/v1.0/partner_webhook`
+- **Endpoint:** `GET /partner/v1.0/webhooks`
+- **Request URL:** `https://api.pulsifi.me/partner/v1.0/webhooks`
 
 #### **Headers:**
 
@@ -1297,7 +1297,7 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 #### **Example cURL:**
 
 ```bash
-  curl -X GET 'https://api.pulsifi.me/partner/v1.0/partner_webhook/?page=1&page_size=25&sort_by=created_at&status=active&q=Webhook%201' \
+  curl -X GET 'https://api.pulsifi.me/partner/v1.0/webhooks/?page=1&page_size=25&sort_by=created_at&status=active&q=Webhook%201' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <access_token>' \
@@ -1378,8 +1378,8 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 
 #### **Use this endpoint to get one webhook details.**
 
-- **Endpoint:** `GET /partner/v1.0/partner_webhook/{webhook_id}`
-- **Request URL:** `https://api.pulsifi.me/partner/v1.0/partner_webhook/{webhook_id}`
+- **Endpoint:** `GET /partner/v1.0/webhooks/{webhook_id}`
+- **Request URL:** `https://api.pulsifi.me/partner/v1.0/webhooks/{webhook_id}`
 
 #### **Headers:**
 
@@ -1396,7 +1396,7 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 #### **Example cURL:**
 
 ```bash
-  curl -X GET 'https://api.pulsifi.me/partner/v1.0/partner_webhook/{webhook_id}' \
+  curl -X GET 'https://api.pulsifi.me/partner/v1.0/webhooks/{webhook_id}' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <access_token>' \
@@ -1472,8 +1472,8 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 
 #### **Use this endpoint to update webhook status in the Pulsifi system.**
 
-- **Endpoint:** `PUT /partner/v1.0/partner_webhook/{webhook_id}/status`
-- **Request URL:** `https://api.pulsifi.me/partner/v1.0/partner_webhook/{webhook_id}/status`
+- **Endpoint:** `PUT /partner/v1.0/webhooks/{webhook_id}/status`
+- **Request URL:** `https://api.pulsifi.me/partner/v1.0/webhooks/{webhook_id}/status`
 
 #### **Headers:**
 
@@ -1498,7 +1498,7 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 #### **Example cURL:**
 
 ```bash
-  curl -X PUT 'https://api.pulsifi.me/partner/v1.0/partner_webhook/{webhook_id}/status' \
+  curl -X PUT 'https://api.pulsifi.me/partner/v1.0/webhooks/{webhook_id}/status' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <access_token>' \
@@ -1577,8 +1577,8 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 
 #### **Use this endpoint to test webhook.**
 
-- **Endpoint:** `POST /partner/v1.0/partner_webhook/test`
-- **Request URL:** `https://api.pulsifi.me/partner/v1.0/partner_webhook/test`
+- **Endpoint:** `POST /partner/v1.0/webhooks/test`
+- **Request URL:** `https://api.pulsifi.me/partner/v1.0/webhooks/test`
 
 #### **Headers:**
 
@@ -1596,7 +1596,7 @@ curl -X POST 'https://api.pulsifi.me/partner/v1.0/standard/candidates' \
 #### **Example cURL:**
 
 ```bash
-  curl -X PUT 'https://api.pulsifi.me/partner/v1.0/partner_webhook/test' \
+  curl -X PUT 'https://api.pulsifi.me/partner/v1.0/webhooks/test' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <access_token>' \
